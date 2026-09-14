@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De nuestra tierra a tu mesa · La Huerta Hotel</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+       background:#faf8f3;color:#2a2a26;line-height:1.6;padding:24px 16px 60px}
+  .wrap{max-width:880px;margin:0 auto}
+  header{text-align:center;padding:28px 0 34px}
+  .eyebrow{font-size:12px;letter-spacing:2.4px;text-transform:uppercase;color:#7a9a5b;font-weight:600}
+  h1{font-size:clamp(28px,5vw,42px);font-weight:700;color:#2d5016;margin:10px 0 8px;line-height:1.15}
+  .lead{font-size:16px;color:#5f6b52;max-width:540px;margin:0 auto}
+
+  .hero{background:linear-gradient(135deg,#2d5016,#4a7c2a);border-radius:20px;
+        padding:38px 28px;text-align:center;color:#fff;margin-bottom:14px}
+  .big{font-size:clamp(56px,14vw,88px);font-weight:800;line-height:1;letter-spacing:-2px}
+  .big span{font-size:.45em;font-weight:600}
+  .hero p{opacity:.92;font-size:15px;margin-top:10px}
+
+  .tabs{display:flex;gap:8px;justify-content:center;margin:26px 0 20px;flex-wrap:wrap}
+  .tab{padding:10px 22px;border:1.5px solid #d5dcc9;background:#fff;border-radius:99px;
+       cursor:pointer;font-size:14px;font-weight:600;color:#5f6b52;transition:.18s}
+  .tab:hover{border-color:#7a9a5b}
+  .tab.on{background:#2d5016;border-color:#2d5016;color:#fff}
+
+  .card{background:#fff;border-radius:16px;padding:24px;margin-bottom:14px;border:1px solid #e8e5db}
+  .row{margin-bottom:20px}
+  .row:last-child{margin-bottom:0}
+  .rt{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+  .rn{font-weight:600;font-size:15px}
+  .rv{font-weight:700;font-size:19px;color:#2d5016}
+  .bar{height:12px;background:#eef0e8;border-radius:99px;overflow:hidden}
+  .fill{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.4,0,.2,1);background:#4a7c2a}
+  .fill.w{background:#c9a227}
+  .det{font-size:12.5px;color:#8a9179;margin-top:5px}
+  .nd{font-size:12.5px;color:#a8ad9a;text-align:center;margin-top:16px;font-style:italic}
+
+  h2{font-size:19px;color:#2d5016;margin:32px 0 12px;font-weight:700}
+  .sec-i{font-size:14px;color:#5f6b52;margin-bottom:14px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+  .cat{background:#fff;border:1px solid #e8e5db;border-radius:14px;padding:18px;cursor:pointer;transition:.18s}
+  .cat:hover{border-color:#7a9a5b;transform:translateY(-2px)}
+  .cat h3{font-size:15px;color:#2d5016;margin-bottom:3px;display:flex;justify-content:space-between;gap:8px}
+  .cat h3 em{font-style:normal;color:#4a7c2a;font-weight:700}
+  .cat .c{font-size:12.5px;color:#8a9179}
+  .chips{display:none;flex-wrap:wrap;gap:5px;margin-top:12px}
+  .cat.open .chips{display:flex}
+  .chip{background:#eef3e6;color:#3d5a26;font-size:11.5px;padding:3px 9px;border-radius:99px}
+  .chip.b{background:#fdf2e0;color:#8a6614}
+  .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:#a8ad9a;
+       width:100%;margin-top:8px;font-weight:600}
+
+  .circles{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .ring{border-radius:14px;padding:16px 20px;border:1px solid}
+  .r1{background:#eef3e6;border-color:#a8c485}
+  .r2{background:#f3f0e4;border-color:#d4cba0}
+  .r3{background:#f5f2ef;border-color:#d8d0c8}
+  .ring b{display:block;font-size:14.5px;color:#2d5016;margin-bottom:3px}
+  .ring .d{font-size:13px;color:#6b7360}
+
+  details{background:#fff;border:1px solid #e8e5db;border-radius:14px;padding:16px 20px;margin-top:12px}
+  summary{cursor:pointer;font-weight:600;color:#2d5016;font-size:14.5px;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:'+ ';color:#7a9a5b}
+  details[open] summary::before{content:'− '}
+  details p{font-size:13.5px;color:#5f6b52;margin-top:12px}
+  .det-cat{background:#fff;border:1px solid #e8e5db;border-radius:14px;padding:16px 20px;margin-bottom:10px}
+  .det-cat summary{cursor:pointer;font-weight:600;color:#2d5016;font-size:14.5px;list-style:none}
+  .det-cat summary::-webkit-details-marker{display:none}
+  .det-cat summary::before{content:'+ ';color:#7a9a5b}
+  .det-cat[open] summary::before{content:'− '}
+  .det-cat h4{font-size:13px;color:#7a9a5b;text-transform:uppercase;letter-spacing:1px;margin:16px 0 6px;font-weight:600}
+  .dtbl.pp td:first-child{color:#2d5016}
+  .dtbl.pc td:first-child{color:#8a6614}
+  .tbl-t{font-size:15px;color:#2d5016;margin-bottom:12px;font-weight:700}
+  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .dtbl{width:100%;border-collapse:collapse;font-size:13.5px;white-space:nowrap}
+  .dtbl th{background:#eef3e6;color:#3d5a26;padding:8px 12px;text-align:right;font-weight:600;
+           border-bottom:2px solid #c5d4ab;font-size:12.5px}
+  .dtbl th:first-child{text-align:left;border-radius:8px 0 0 0}
+  .dtbl th:last-child{border-radius:0 8px 0 0}
+  .dtbl td{padding:7px 12px;text-align:right;border-bottom:1px solid #eee}
+  .dtbl td:first-child{text-align:left;font-weight:500;color:#3d3d3a}
+  .dtbl tr.sub td{font-weight:600;background:#f8f9f5;border-top:1.5px solid #c5d4ab}
+  .dtbl tr.tot td{font-weight:700;background:#eef3e6;border-top:2px solid #7a9a5b;color:#2d5016}
+  .dtbl .hi{color:#2d5016;font-weight:700}
+  .dtbl .lo{color:#c9a227;font-weight:700}
+  footer{text-align:center;font-size:12.5px;color:#a8ad9a;margin-top:36px;line-height:1.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">La Huerta Hotel · Yotoco, Valle del Cauca</div>
+  <h1>De nuestra tierra<br>a tu mesa</h1>
+  <p class="lead">Medimos, factura por factura, cuánto de lo que servimos nace realmente aquí.</p>
+</header>
+
+<div class="hero">
+  <div class="big" id="hero">79<span>%</span></div>
+  <p id="heroT">de los productos distintos de nuestra cocina nacen en el predio</p>
+</div>
+
+<div class="tabs">
+  <div class="tab on" data-m="prod">Por productos</div>
+  <div class="tab" data-m="valor">Por valor</div>
+  <div class="tab" data-m="peso">Por peso</div>
+</div>
+
+<div class="card" id="bars"></div>
+<p class="nd" id="note"></p>
+
+<h2>Datos exactos</h2>
+<p class="sec-i">Las cifras detrás de cada porcentaje, enero a agosto de 2026.</p>
+
+<div class="card">
+<h3 class="tbl-t">Valor (pesos colombianos)</h3>
+<div class="tbl-wrap">
+<table class="dtbl">
+  <thead><tr><th>Componente</th><th>Huerta</th><th>Comprado</th><th>Total</th><th>% propio</th></tr></thead>
+  <tbody>
+    <tr><td>Carnes y proteína</td><td>$57.944.312</td><td>$13.474.725</td><td>$71.419.037</td><td class="hi">81,1%</td></tr>
+    <tr><td>Verduras y hortalizas</td><td>$23.609.138</td><td>$9.664.048</td><td>$33.273.186</td><td>71,0%</td></tr>
+    <tr><td>Granos y leguminosas</td><td>$4.854.284</td><td>$2.147.731</td><td>$7.002.015</td><td>69,3%</td></tr>
+    <tr><td>Frutas</td><td>$3.054.601</td><td>$9.100.710</td><td>$12.155.311</td><td class="lo">25,1%</td></tr>
+    <tr class="sub"><td>Subtotal sin lácteos</td><td>$89.462.335</td><td>$34.387.214</td><td>$123.849.549</td><td>72,2%</td></tr>
+    <tr><td>Lácteos</td><td>$13.158.000</td><td>$5.711.381</td><td>$18.869.381</td><td>69,7%</td></tr>
+    <tr class="tot"><td>Total con lácteos</td><td>$102.620.335</td><td>$40.098.595</td><td>$142.718.930</td><td>71,9%</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="card">
+<h3 class="tbl-t">Peso (kilogramos)</h3>
+<div class="tbl-wrap">
+<table class="dtbl">
+  <thead><tr><th>Componente</th><th>Huerta</th><th>Comprado</th><th>Total</th><th>% propio</th></tr></thead>
+  <tbody>
+    <tr><td>Lácteos</td><td>4.518 kg</td><td>168 kg</td><td>4.686 kg</td><td class="hi">96,4%</td></tr>
+    <tr><td>Carnes y proteína</td><td>2.355 kg</td><td>281 kg</td><td>2.636 kg</td><td class="hi">89,3%</td></tr>
+    <tr><td>Granos y leguminosas</td><td>247 kg</td><td>186 kg</td><td>433 kg</td><td>57,0%</td></tr>
+    <tr><td>Verduras y hortalizas</td><td>1.996 kg</td><td>1.897 kg</td><td>3.893 kg</td><td>51,3%</td></tr>
+    <tr><td>Frutas</td><td>620 kg</td><td>1.443 kg</td><td>2.063 kg</td><td class="lo">30,1%</td></tr>
+    <tr class="sub"><td>Subtotal sin lácteos</td><td>5.218 kg</td><td>3.807 kg</td><td>9.025 kg</td><td>57,8%</td></tr>
+    <tr class="tot"><td>Total con lácteos</td><td>9.736 kg</td><td>3.975 kg</td><td>13.711 kg</td><td>71,0%</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="card">
+<h3 class="tbl-t">Número de productos distintos</h3>
+<div class="tbl-wrap">
+<table class="dtbl">
+  <thead><tr><th>Componente</th><th>Huerta</th><th>Comprados</th><th>Universo</th><th>% propio</th></tr></thead>
+  <tbody>
+    <tr><td>Verduras y hortalizas</td><td>36</td><td>2</td><td>38</td><td class="hi">94,7%</td></tr>
+    <tr><td>Plantas medicinales</td><td>7</td><td>1</td><td>8</td><td class="hi">87,5%</td></tr>
+    <tr><td>Granos y leguminosas</td><td>8</td><td>2</td><td>10</td><td>80,0%</td></tr>
+    <tr><td>Carnes y proteína</td><td>5</td><td>2</td><td>7</td><td>71,4%</td></tr>
+    <tr><td>Frutas</td><td>9</td><td>7</td><td>16</td><td>56,3%</td></tr>
+    <tr><td>Lácteos</td><td>3</td><td>4</td><td>7</td><td class="lo">42,9%</td></tr>
+    <tr class="tot"><td>Total</td><td>68</td><td>18</td><td>86</td><td>79,1%</td></tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<h2>Desglose producto por producto</h2>
+<p class="sec-i">Cada producto que producimos y cada producto que compramos, con su peso y valor exacto.</p>
+
+<details class="det-cat" open>
+  <summary>Verduras y hortalizas — producimos 35, compramos 14</summary>
+  <h4>Lo que producimos</h4>
+  <div class="tbl-wrap"><table class="dtbl pp">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Tomate cherry</td><td>218,1 kg</td><td>$4.226.958</td></tr>
+      <tr><td>Zapallo</td><td>372,8 kg</td><td>$2.832.480</td></tr>
+      <tr><td>Lechuga crespa verde</td><td>128,0 kg</td><td>$2.560.440</td></tr>
+      <tr><td>Cogollos europeos</td><td>63,7 kg</td><td>$2.033.495</td></tr>
+      <tr><td>Zanahoria</td><td>184,0 kg</td><td>$1.239.098</td></tr>
+      <tr><td>Cebolla puerro</td><td>64,1 kg</td><td>$1.173.215</td></tr>
+      <tr><td>Cebolla larga</td><td>118,1 kg</td><td>$1.122.631</td></tr>
+      <tr><td>Berenjena</td><td>88,1 kg</td><td>$1.065.720</td></tr>
+      <tr><td>Cebollín</td><td>22,8 kg</td><td>$951.958</td></tr>
+      <tr><td>Yacón</td><td>65,1 kg</td><td>$833.062</td></tr>
+      <tr><td>Lechuga crespa morada</td><td>33,7 kg</td><td>$674.180</td></tr>
+      <tr><td>Acelga</td><td>94,8 kg</td><td>$663.880</td></tr>
+      <tr><td>Tomate chonto</td><td>92,4 kg</td><td>$560.048</td></tr>
+      <tr><td>Brócoli</td><td>53,8 kg</td><td>$510.630</td></tr>
+      <tr><td>Calabacín</td><td>125,5 kg</td><td>$476.169</td></tr>
+      <tr><td>Repollo</td><td>63,6 kg</td><td>$439.100</td></tr>
+      <tr><td>Pepino dulce</td><td>45,1 kg</td><td>$428.716</td></tr>
+      <tr><td>Perejil</td><td>7,8 kg</td><td>$310.422</td></tr>
+      <tr><td>Remolacha</td><td>31,3 kg</td><td>$309.530</td></tr>
+      <tr><td>Rúgula</td><td>9,4 kg</td><td>$301.073</td></tr>
+      <tr><td>Cilantro</td><td>26,7 kg</td><td>$285.785</td></tr>
+      <tr><td>Rábano</td><td>46,1 kg</td><td>$253.210</td></tr>
+      <tr><td>Papa mambera</td><td>24,4 kg</td><td>$219.690</td></tr>
+      <tr><td>Yuca</td><td>28,0 kg</td><td>$204.341</td></tr>
+      <tr><td>Cebolla cabezona</td><td>17,9 kg</td><td>$85.910</td></tr>
+      <tr><td>Apio de ensalada</td><td>8,9 kg</td><td>$72.578</td></tr>
+      <tr><td>Coliflor</td><td>5,1 kg</td><td>$52.717</td></tr>
+      <tr><td>Pimentón</td><td>6,7 kg</td><td>$50.280</td></tr>
+      <tr><td>Menta</td><td>1,4 kg</td><td>$47.553</td></tr>
+      <tr><td>Tomate amarillo</td><td>2,0 kg</td><td>$39.919</td></tr>
+      <tr><td>Arracacha</td><td>7,3 kg</td><td>$31.944</td></tr>
+      <tr><td>Ají rocoto</td><td>0,9 kg</td><td>$17.728</td></tr>
+      <tr><td>Ají rojo</td><td>2,2 kg</td><td>$11.093</td></tr>
+      <tr><td>Papa parda</td><td>1,0 kg</td><td>$9.000</td></tr>
+      <tr><td>Espinaca</td><td>0,1 kg</td><td>$1.238</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Lo que compramos</h4>
+  <div class="tbl-wrap"><table class="dtbl pc">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Papa amarilla</td><td>598,8 kg</td><td>$3.747.378</td></tr>
+      <tr><td>Tomate chonto</td><td>363,6 kg</td><td>$1.878.821</td></tr>
+      <tr><td>Maíz</td><td>167,8 kg</td><td>$660.001</td></tr>
+      <tr><td>Papa parda</td><td>226,6 kg</td><td>$604.151</td></tr>
+      <tr><td>Cebolla cabezona</td><td>179,5 kg</td><td>$483.388</td></tr>
+      <tr><td>Pimentón</td><td>93,3 kg</td><td>$453.308</td></tr>
+      <tr><td>Berenjena</td><td>66,2 kg</td><td>$383.335</td></tr>
+      <tr><td>Repollo</td><td>92,5 kg</td><td>$338.603</td></tr>
+      <tr><td>Jengibre</td><td>17,6 kg</td><td>$275.409</td></tr>
+      <tr><td>Aromáticas comerciales</td><td>3,6 kg</td><td>$266.466</td></tr>
+      <tr><td>Ajo</td><td>11,2 kg</td><td>$121.350</td></tr>
+      <tr><td>Lechuga</td><td>—</td><td>$76.544</td></tr>
+      <tr><td>Zapallo</td><td>37,4 kg</td><td>$62.329</td></tr>
+      <tr><td>Calabacín</td><td>8,9 kg</td><td>$35.945</td></tr>
+    </tbody>
+  </table></div>
+</details>
+
+<details class="det-cat">
+  <summary>Frutas — producimos 8, compramos 8</summary>
+  <h4>Lo que producimos</h4>
+  <div class="tbl-wrap"><table class="dtbl pp">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Papaya</td><td>274,6 kg</td><td>$1.838.400</td></tr>
+      <tr><td>Plátano</td><td>271,1 kg</td><td>$542.600</td></tr>
+      <tr><td>Limón</td><td>31,0 kg</td><td>$300.285</td></tr>
+      <tr><td>Tomate de árbol</td><td>27,0 kg</td><td>$186.039</td></tr>
+      <tr><td>Aguacate</td><td>9,6 kg</td><td>$95.916</td></tr>
+      <tr><td>Mandarina</td><td>3,9 kg</td><td>$57.603</td></tr>
+      <tr><td>Maracuba</td><td>2,4 kg</td><td>$32.026</td></tr>
+      <tr><td>Guayaba</td><td>0,2 kg</td><td>$1.732</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Lo que compramos</h4>
+  <div class="tbl-wrap"><table class="dtbl pc">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Pulpas procesadas</td><td>175,7 kg</td><td>$2.476.480</td></tr>
+      <tr><td>Mango</td><td>218,3 kg</td><td>$1.834.598</td></tr>
+      <tr><td>Aguacate</td><td>92,6 kg</td><td>$1.151.628</td></tr>
+      <tr><td>Sandía</td><td>232,5 kg</td><td>$723.327</td></tr>
+      <tr><td>Mora</td><td>73,6 kg</td><td>$677.068</td></tr>
+      <tr><td>Papaya</td><td>80,4 kg</td><td>$262.666</td></tr>
+      <tr><td>Melón</td><td>19,2 kg</td><td>$107.213</td></tr>
+      <tr><td>Banano</td><td>3,6 kg</td><td>$10.310</td></tr>
+    </tbody>
+  </table></div>
+</details>
+
+<details class="det-cat">
+  <summary>Carnes y proteína — producimos 5, compramos 1</summary>
+  <h4>Lo que producimos</h4>
+  <div class="tbl-wrap"><table class="dtbl pp">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Cordero</td><td>276,0 kg</td><td>$21.251.307</td></tr>
+      <tr><td>Pollo</td><td>905,4 kg</td><td>$17.605.424</td></tr>
+      <tr><td>Cerdo</td><td>1.048,1 kg</td><td>$17.536.514</td></tr>
+      <tr><td>Tilapia</td><td>61,8 kg</td><td>$1.111.967</td></tr>
+      <tr><td>Huevo</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Lo que compramos</h4>
+  <div class="tbl-wrap"><table class="dtbl pc">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Res</td><td>272,6 kg</td><td>$13.158.352</td></tr>
+      <tr><td>Huevo</td><td>—</td><td>$206.250</td></tr>
+    </tbody>
+  </table></div>
+</details>
+
+<details class="det-cat">
+  <summary>Granos y leguminosas — producimos 8, compramos 2</summary>
+  <h4>Lo que producimos</h4>
+  <div class="tbl-wrap"><table class="dtbl pp">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Mazorca</td><td>142,5 kg</td><td>$1.695.321</td></tr>
+      <tr><td>Adzuki amarillo</td><td>22,5 kg</td><td>$875.784</td></tr>
+      <tr><td>Guandul</td><td>19,9 kg</td><td>$841.150</td></tr>
+      <tr><td>Adzuki rojo</td><td>19,1 kg</td><td>$745.992</td></tr>
+      <tr><td>Frijol rojo</td><td>18,4 kg</td><td>$349.386</td></tr>
+      <tr><td>Frijol negro</td><td>13,8 kg</td><td>$225.868</td></tr>
+      <tr><td>Arveja</td><td>8,1 kg</td><td>$83.883</td></tr>
+      <tr><td>Chachafruto</td><td>2,5 kg</td><td>$36.900</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Lo que compramos</h4>
+  <div class="tbl-wrap"><table class="dtbl pc">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Arroz</td><td>—</td><td>$1.313.430</td></tr>
+      <tr><td>Quinua</td><td>3,8 kg</td><td>$174.300</td></tr>
+    </tbody>
+  </table></div>
+</details>
+
+<details class="det-cat">
+  <summary>Lácteos — producimos 3, compramos 5</summary>
+  <h4>Lo que producimos</h4>
+  <div class="tbl-wrap"><table class="dtbl pp">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Leche</td><td>4.517,6 kg</td><td>$13.158.000</td></tr>
+      <tr><td>Queso cuajada</td><td>—</td><td>—</td></tr>
+      <tr><td>Yogurt</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Lo que compramos</h4>
+  <div class="tbl-wrap"><table class="dtbl pc">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Crema de leche</td><td>113,1 kg</td><td>$2.721.280</td></tr>
+      <tr><td>Queso parmesano</td><td>9,9 kg</td><td>$1.343.400</td></tr>
+      <tr><td>Leche en polvo</td><td>16,5 kg</td><td>$699.770</td></tr>
+      <tr><td>Queso mozzarella</td><td>15,5 kg</td><td>$517.361</td></tr>
+      <tr><td>Queso crema / para untar</td><td>12,6 kg</td><td>$429.570</td></tr>
+    </tbody>
+  </table></div>
+</details>
+
+<details class="det-cat">
+  <summary>Plantas medicinales — producimos 7, compramos 1</summary>
+  <h4>Lo que producimos</h4>
+  <div class="tbl-wrap"><table class="dtbl pp">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Cúrcuma</td><td>2,8 kg</td><td>$142.100</td></tr>
+      <tr><td>Pronto alivio</td><td>1,3 kg</td><td>$65.700</td></tr>
+      <tr><td>Sábila</td><td>—</td><td>$40.170</td></tr>
+      <tr><td>Insulina</td><td>0,6 kg</td><td>$29.700</td></tr>
+      <tr><td>Cidrón</td><td>—</td><td>—</td></tr>
+      <tr><td>Romero</td><td>—</td><td>—</td></tr>
+      <tr><td>Eneldo</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Lo que compramos</h4>
+  <div class="tbl-wrap"><table class="dtbl pc">
+    <thead><tr><th>Producto</th><th>Peso</th><th>Valor</th></tr></thead>
+    <tbody>
+      <tr><td>Aromáticas comerciales</td><td>3,6 kg</td><td>$266.466</td></tr>
+    </tbody>
+  </table></div>
+</details>
+
+<h2>Los 68 productos que nacen aquí</h2>
+<p class="sec-i">Toca cada categoría para ver la lista completa de lo que producimos y lo que aún compramos.</p>
+<div class="grid" id="cats"></div>
+
+<h2>De dónde viene lo demás</h2>
+<p class="sec-i">Cuando no alcanzamos a producir algo, lo buscamos lo más cerca posible.</p>
+<div class="circles">
+  <div class="ring r1"><b>Km 0 · nuestro predio</b>
+    <div class="d">68 productos entre hortalizas, frutas, granos, plantas medicinales, cordero, cerdo, pollo, tilapia, huevo y leche.</div></div>
+  <div class="ring r2"><b>Cadena corta · nuestros vecinos</b>
+    <div class="d">Guarín hace los chorizos y Camilo Mera pone los huevos, ambos en Jiguales. Digna Díaz, colaboradora nuestra, hace la mantequilla. Gerardo Valencia tuesta el café aquí mismo en Calimita. Chocoguayabal trae el chocolate desde Riofrío.</div></div>
+  <div class="ring r3"><b>Fuera de nuestro alcance</b>
+    <div class="d">Arroz, piña, mango y los lácteos madurados que requieren procesos industriales. Y la carne de res: aunque el proveedor está a 15 km, no podemos rastrear el origen del animal, así que no la contamos como local.</div></div>
+</div>
+
+<h2>Lo que aprendimos midiendo</h2>
+<div class="card">
+  <div class="row"><div class="rt"><span class="rn">Las verduras son nuestra fortaleza</span></div>
+    <div class="det">95 de cada 100 productos vegetales que entran a la cocina los sembramos nosotros. Solo compramos ajo y jengibre, y ya están sembrados.</div></div>
+  <div class="row"><div class="rt"><span class="rn">La proteína la criamos aquí</span></div>
+    <div class="det">Cordero, cerdo, pollo, tilapia y huevo salen del predio. 276 kg de cordero en lo que va del año.</div></div>
+  <div class="row"><div class="rt"><span class="rn">Tenemos nuestra propia botica</span></div>
+    <div class="det">Sábila, cúrcuma, cidrón, romero, eneldo, insulina y pronto alivio crecen aquí y pasan directo a la cocina.</div></div>
+  <div class="row"><div class="rt"><span class="rn">Las frutas son nuestro reto</span></div>
+    <div class="det">Es donde más dependemos de afuera. Ya sabemos qué sembrar el próximo año.</div></div>
+</div>
+
+<details>
+  <summary>Cómo hicimos esta medición</summary>
+  <p>Comparamos todo lo que la huerta entregó al restaurante entre enero y agosto de 2026 contra la facturación de nuestros dos proveedores principales, Surtifamiliar y Punto Carnes: 61 facturas y más de 3.400 registros.</p>
+  <p>Medimos de tres formas porque ninguna cuenta la historia completa: en número de productos distintos, en valor y en kilos. Un producto es un cultivo distinto según su manejo agronómico: el cerdo cuenta como uno aunque se registren once cortes, y la lechuga crespa verde y la morada cuentan como dos porque son siembras diferentes.</p>
+  <p>La cifra por productos es la más alta de las tres porque muchas plantas —hierbas medicinales, aromáticas, frutales de cosecha ocasional— entran a la cocina sin pesarse. Aparecen en el conteo pero no en las cifras de peso y valor, que solo incluyen lo registrado con cantidad.</p>
+  <p>Quedan fuera del cálculo el aseo y los productos que no tiene sentido producir en una finca: aceites, azúcar, harinas, condimentos y bebidas. Aún estamos incorporando las compras de proveedores menores, así que estas cifras se irán ajustando a medida que el registro se complete. Preferimos publicar lo que ya está verificado y corregirlo, antes que esperar a un número perfecto.</p>
+</details>
+
+<footer>La Huerta Hotel · Vereda Calimita, Yotoco<br>Datos de enero a agosto de 2026</footer>
+</div>
+
+<script>
+const D={
+ prod:{t:79,txt:'de los productos distintos de nuestra cocina nacen en el predio',
+  n:'Incluye plantas que entran a cocina sin registro de peso.',
+  r:[['Verduras y hortalizas',94.7],['Plantas medicinales',87.5],['Granos y leguminosas',80.0],['Carnes y proteína',71.4],['Frutas',56.3],['Lácteos',42.9]]},
+ valor:{t:72,txt:'del valor de los alimentos que servimos sale de nuestro predio',
+  n:'Solo productos con cantidad registrada en factura o registro interno.',
+  r:[['Carnes y proteína',81.1],['Verduras y hortalizas',71.0],['Granos y leguminosas',69.3],['Lácteos',69.7],['Frutas',25.1]]},
+ peso:{t:71,txt:'de cada kilo de alimento que entra a la cocina lo producimos nosotros',
+  n:'Solo productos con cantidad registrada en factura o registro interno.',
+  r:[['Lácteos',96.4],['Carnes y proteína',89.3],['Granos y leguminosas',57.0],['Verduras y hortalizas',51.3],['Frutas',30.1]]}};
+
+const C=[
+ ['Verduras y hortalizas',['acelga','ají ripper','ají rocoto','ají rojo','apio de ensalada','arracacha','berenjena','brócoli','calabacín','cebolla cabezona','cebolla larga','cebolla puerro','cebollín','cilantro','cogollos europeos','coliflor','espinaca','lechuga crespa verde','lechuga crespa morada','menta','papa mambera','papa parda','pepino dulce','perejil','pimentón','rábano','remolacha','repollo','rúgula','tomate amarillo','tomate cherry','tomate chonto','yacón','yuca','zanahoria','zapallo'],['ajo','jengibre']],
+ ['Frutas',['aguacate','guamo','guayaba','limón','mandarina','maracuba','papaya','plátano','tomate de árbol'],['piña','mango','sandía','melón','mora','banano','pulpas']],
+ ['Carnes y proteína',['cordero','cerdo','pollo','tilapia','huevo'],['res','trucha']],
+ ['Granos y leguminosas',['adzuki amarillo','adzuki rojo','arveja','chachafruto','guandul','frijol negro','frijol rojo','mazorca'],['arroz','quinua']],
+ ['Plantas medicinales',['sábila','cúrcuma','cidrón','romero','eneldo','insulina','pronto alivio'],['aromáticas comerciales']],
+ ['Lácteos',['leche','queso cuajada','yogurt'],['crema de leche','mozzarella','queso crema','derivados industriales']]];
+
+function draw(m){
+  const d=D[m];
+  document.getElementById('hero').innerHTML=d.t+'<span>%</span>';
+  document.getElementById('heroT').textContent=d.txt;
+  document.getElementById('note').textContent=d.n;
+  document.getElementById('bars').innerHTML=d.r.map(([n,v])=>
+    `<div class="row"><div class="rt"><span class="rn">${n}</span><span class="rv">${v.toFixed(1)}%</span></div>
+     <div class="bar"><div class="fill ${v<50?'w':''}" style="width:0%" data-w="${v}"></div></div></div>`).join('');
+  requestAnimationFrame(()=>document.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%'));
+}
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on'); draw(t.dataset.m);});
+
+document.getElementById('cats').innerHTML=C.map(([n,p,b])=>
+ `<div class="cat"><h3>${n} <em>${p.length}</em></h3><div class="c">${p.length} propios · ${b.length} comprados · toca para ver</div>
+  <div class="chips"><span class="lbl">Producimos</span>${p.map(x=>`<span class="chip">${x}</span>`).join('')}
+  <span class="lbl">Compramos</span>${b.map(x=>`<span class="chip b">${x}</span>`).join('')}</div></div>`).join('');
+document.querySelectorAll('.cat').forEach(c=>c.onclick=()=>c.classList.toggle('open'));
+
+draw('prod');
+</script>
+</body>
+</html>
